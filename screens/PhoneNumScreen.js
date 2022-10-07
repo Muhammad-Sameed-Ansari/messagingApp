@@ -1,16 +1,19 @@
 import { SafeAreaView, StyleSheet, Text, View, Image, TextInput, TouchableOpacity, StatusBar } from 'react-native'
 import React from 'react'
-import Icon from 'react-native-vector-icons/Feather'
+import FontAwesome from 'react-native-vector-icons/FontAwesome'
 import { images } from '../constants'
+import { useNavigation } from '@react-navigation/native'
 
 const PhoneNumScreen = () => {
+    const navigation = useNavigation()
+
     return (
         <View style={styles.container}>
             <StatusBar backgroundColor="#5566ee" barStyle="light-content" />
             <SafeAreaView style={styles.headerWrapper}>
                 <View style={styles.header}>
                     <View>
-                        <Icon name="chevron-left" size={24} style={styles.iconWhite} />
+                        <FontAwesome name='chevron-left' size={24} style={styles.iconWhite} />
                     </View>
                     <View>
                         <Text style={styles.headerText}>Send Code</Text>
@@ -25,7 +28,7 @@ const PhoneNumScreen = () => {
                 </View>
             </SafeAreaView>
 
-            <View style={styles.content}>
+            <View style={[styles.content, styles.cardShadow]}>
                 <View>
                     <Text style={styles.title}>Personal Information &gt;</Text>
                 </View>
@@ -42,14 +45,15 @@ const PhoneNumScreen = () => {
                         style={styles.phoneInput}
                         placeholder='Your phone number'
                         placeholderTextColor='#ababab'
+                        keyboardType='numeric'
                     />
                 </View>
                 <View>
                     <Text style={styles.description}>We will send you a verification code to your phone number</Text>
                 </View>
                 <View style={styles.buttonWrapper}>
-                    <TouchableOpacity style={styles.button}>
-                        <Icon name='arrow-right' size={25} style={styles.iconButton}/>
+                    <TouchableOpacity onPress={() => navigation.navigate('OTP')} style={styles.button}>
+                        <FontAwesome name='arrow-right' size={25} style={styles.iconButton}/>
                     </TouchableOpacity>
                 </View>
             </View>
@@ -81,7 +85,7 @@ const styles = StyleSheet.create({
     headerText: {
         fontWeight: 'bold',
         color: '#fff',
-        fontSize: 18
+        fontSize: 22
     },
     icon: {
         paddingTop: 80,
@@ -119,7 +123,7 @@ const styles = StyleSheet.create({
         fontWeight: 'bold'
     },
     phoneInput: {
-        fontWeight: '500',
+        fontWeight: 'bold',
         borderBottomColor: '#dddddd',
         borderBottomWidth: 2,
         fontSize: 16,
@@ -131,7 +135,7 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         fontSize: 18,
         padding: 20,
-        fontWeight: '500'
+        fontWeight: 'bold'
     },
     buttonWrapper: {
         alignItems: 'center',
@@ -147,5 +151,15 @@ const styles = StyleSheet.create({
     },
     iconButton: {
         color: '#fff'
+    },
+    cardShadow: {
+        shadowColor: '#000',
+        shadowOffset: {
+            width: 0,
+            height: 1
+        },
+        shadowOpacity: 0.2,
+        shadowRadius: 1.41,
+        elevation: 2
     }
 })
