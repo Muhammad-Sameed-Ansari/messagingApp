@@ -1,11 +1,17 @@
 import { SafeAreaView, StyleSheet, Text, View, Image, TextInput, TouchableOpacity, StatusBar } from 'react-native'
-import React from 'react'
+import React, { useState } from 'react'
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
 import { images } from '../constants'
 import { useNavigation } from '@react-navigation/native'
 
 const PhoneNumScreen = () => {
+    const [phoneNumber, setPhoneNumber] = useState("");
     const navigation = useNavigation()
+
+    const verify = () => {
+        setPhoneNumber("+92" + phoneNumber)
+        navigation.navigate('OTP', { phoneNumber })
+    }
 
     return (
         <View style={styles.container}>
@@ -46,13 +52,15 @@ const PhoneNumScreen = () => {
                         placeholder='Your phone number'
                         placeholderTextColor='#ababab'
                         keyboardType='numeric'
+                        value={phoneNumber}
+                        onChangeText={setPhoneNumber}
                     />
                 </View>
                 <View>
                     <Text style={styles.description}>We will send you a verification code to your phone number</Text>
                 </View>
                 <View style={styles.buttonWrapper}>
-                    <TouchableOpacity onPress={() => navigation.navigate('OTP')} style={styles.button}>
+                    <TouchableOpacity onPress={() => verify()} style={styles.button}>
                         <FontAwesome name='arrow-right' size={25} style={styles.iconButton}/>
                     </TouchableOpacity>
                 </View>
