@@ -1,4 +1,4 @@
-import { SafeAreaView, StyleSheet, Text, View, Image, TextInput, TouchableOpacity, StatusBar } from 'react-native'
+import { SafeAreaView, StyleSheet, Text, View, Image, TextInput, TouchableOpacity, StatusBar, ScrollView } from 'react-native'
 import React, { useState } from 'react'
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
 import { images } from '../constants'
@@ -33,7 +33,7 @@ const PhoneNumScreen = () => {
                     />
                 </View>
             </SafeAreaView>
-
+            
             <View style={[styles.content, styles.cardShadow]}>
                 <View>
                     <Text style={styles.title}>Personal Information &gt;</Text>
